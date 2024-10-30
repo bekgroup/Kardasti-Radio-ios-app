@@ -30,7 +30,7 @@ Kardasti Radio ist eine native iOS/watchOS Anwendung, die es Benutzern ermöglic
 1. Laden Sie die App aus dem App Store herunter
 2. Alternativ: Klonen Sie das Repository und kompilieren Sie es selbst:
    ```bash
-   git clone https://github.com/bekservice/kardasti-radio.git
+   git clone https://github.com/bekgroup/Kardasti-Radio-ios-app.git
    cd kardasti-radio
    open Kardasti\ Radio.xcodeproj
    ```
