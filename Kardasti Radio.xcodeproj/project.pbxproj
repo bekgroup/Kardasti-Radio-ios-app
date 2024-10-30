@@ -30,21 +30,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8784A3432CD2D61F001DA60F /* Kardasti Watch App */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Kardasti Watch App";
-			sourceTree = "<group>";
-		};
-		8784A3542CD2D621001DA60F /* Kardasti Watch AppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Kardasti Watch AppTests";
-			sourceTree = "<group>";
-		};
-		8784A35E2CD2D621001DA60F /* Kardasti Watch AppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Kardasti Watch AppUITests";
-			sourceTree = "<group>";
-		};
 		87CD47522CD2C0A60097B8E7 /* Kardasti Radio */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Kardasti Radio";
@@ -93,9 +78,6 @@
 				87CD47522CD2C0A60097B8E7 /* Kardasti Radio */,
 				87CD47632CD2C0A70097B8E7 /* Kardasti RadioTests */,
 				87CD476D2CD2C0A70097B8E7 /* Kardasti RadioUITests */,
-				8784A3432CD2D61F001DA60F /* Kardasti Watch App */,
-				8784A3542CD2D621001DA60F /* Kardasti Watch AppTests */,
-				8784A35E2CD2D621001DA60F /* Kardasti Watch AppUITests */,
 				87CD47512CD2C0A60097B8E7 /* Products */,
 			);
 			sourceTree = "<group>";
