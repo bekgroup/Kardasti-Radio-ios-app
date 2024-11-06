@@ -1,6 +1,7 @@
 import AVFoundation
 import MediaPlayer
 
+@MainActor
 class AudioPlayer: ObservableObject {
     static let shared = AudioPlayer()
     private var player: AVPlayer?
@@ -10,6 +11,7 @@ class AudioPlayer: ObservableObject {
             player?.volume = volume
         }
     }
+    @Published var nowPlayingManager = NowPlayingManager.shared
     
     private init() {
         setupAudioSession()
@@ -18,21 +20,23 @@ class AudioPlayer: ObservableObject {
     }
     
     private func setupAudioSession() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(
-                .playback,
-                mode: .default,
-                options: [.mixWithOthers, .allowAirPlay, .defaultToSpeaker]
-            )
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            // Enable background modes
-            UIApplication.shared.beginReceivingRemoteControlEvents()
-            
-            // Set audio session active with options
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            print("Failed to set audio session category: \(error)")
+        Task {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(
+                    .playback,
+                    mode: .default,
+                    options: [.mixWithOthers, .allowAirPlay, .defaultToSpeaker]
+                )
+                try AVAudioSession.sharedInstance().setActive(true)
+                
+                // Enable background modes
+                UIApplication.shared.beginReceivingRemoteControlEvents()
+                
+                // Set audio session active with options
+                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+            } catch {
+                print("Failed to set audio session category: \(error)")
+            }
         }
     }
     
@@ -40,12 +44,16 @@ class AudioPlayer: ObservableObject {
         let commandCenter = MPRemoteCommandCenter.shared()
         
         commandCenter.playCommand.addTarget { [weak self] _ in
-            self?.play()
+            Task { @MainActor in
+                self?.play()
+            }
             return .success
         }
         
         commandCenter.pauseCommand.addTarget { [weak self] _ in
-            self?.pause()
+            Task { @MainActor in
+                self?.pause()
+            }
             return .success
         }
     }
@@ -73,17 +81,17 @@ class AudioPlayer: ObservableObject {
             return
         }
         
-        switch reason {
-        case .oldDeviceUnavailable:
-            // Kopfhörer wurden entfernt
-            pause()
-        case .newDeviceAvailable:
-            // Neue Audioausgabe verfügbar (z.B. Kopfhörer eingesteckt)
-            if isPlaying {
-                play()
+        Task { @MainActor in
+            switch reason {
+            case .oldDeviceUnavailable:
+                pause()
+            case .newDeviceAvailable:
+                if isPlaying {
+                    play()
+                }
+            default:
+                break
             }
-        default:
-            break
         }
     }
     
@@ -94,17 +102,19 @@ class AudioPlayer: ObservableObject {
             return
         }
         
-        switch type {
-        case .began:
-            pause()
-        case .ended:
-            guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
-            let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
-            if options.contains(.shouldResume) {
-                play()
+        Task { @MainActor in
+            switch type {
+            case .began:
+                pause()
+            case .ended:
+                guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
+                let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+                if options.contains(.shouldResume) {
+                    play()
+                }
+            @unknown default:
+                break
             }
-        @unknown default:
-            break
         }
     }
     
@@ -117,7 +127,9 @@ class AudioPlayer: ObservableObject {
             
             // Add periodic time observer
             player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { [weak self] _ in
-                self?.updateNowPlayingInfo()
+                Task { @MainActor in
+                    self?.updateNowPlayingInfo()
+                }
             }
         }
         
@@ -134,11 +146,45 @@ class AudioPlayer: ObservableObject {
     
     private func updateNowPlayingInfo() {
         var nowPlayingInfo = [String: Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = "Kardasti Radio"
-        nowPlayingInfo[MPMediaItemPropertyArtist] = "Live Stream"
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
-        nowPlayingInfo[MPNowPlayingInfoPropertyDefaultPlaybackRate] = 1.0
+        
+        if let currentTrack = nowPlayingManager.currentTrack {
+            // Titel und Künstler aus der API
+            nowPlayingInfo[MPMediaItemPropertyTitle] = currentTrack.nowPlaying.song.title
+            nowPlayingInfo[MPMediaItemPropertyArtist] = currentTrack.nowPlaying.song.artist
+            
+            // Album Art laden und setzen (wenn verfügbar)
+            if let artworkUrl = URL(string: currentTrack.nowPlaying.song.art) {
+                loadArtwork(from: artworkUrl) { image in
+                    if let image = image {
+                        let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                        nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+                        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+                    }
+                }
+            }
+            
+            // Wiedergabeinformationen
+            nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTrack.nowPlaying.elapsed
+            nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = currentTrack.nowPlaying.duration
+            nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
+        } else {
+            // Fallback wenn keine API-Daten verfügbar sind
+            nowPlayingInfo[MPMediaItemPropertyTitle] = "Kardasti Radio"
+            nowPlayingInfo[MPMediaItemPropertyArtist] = "Live Stream"
+        }
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
+    private func loadArtwork(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            DispatchQueue.main.async {
+                if let data = data, error == nil {
+                    completion(UIImage(data: data))
+                } else {
+                    completion(nil)
+                }
+            }
+        }.resume()
     }
 } 
