@@ -22,6 +22,8 @@ struct ContentView: View {
     @StateObject private var sleepTimer = SleepTimerManager.shared
     @State private var showingSleepTimerSheet = false
     
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some View {
         ZStack {
             (colorScheme == .dark ? Color.black : Color.white)
@@ -35,6 +37,7 @@ struct ContentView: View {
                     .transition(.opacity)
             }
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
         .alert("No Internet Connection 😅", isPresented: $showNoInternetAlert) {
             Button("OK", role: .cancel) { }
         } message: {
@@ -135,6 +138,15 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .background(colorScheme == .dark ? Color.gray : Color.blue)
                 .cornerRadius(10)
+            }
+            
+            Button(action: { isDarkMode.toggle() }) {
+                Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
+                    .font(.system(size: 20))
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(colorScheme == .dark ? Color.gray : Color.blue)
+                    .cornerRadius(10)
             }
         }
     }
