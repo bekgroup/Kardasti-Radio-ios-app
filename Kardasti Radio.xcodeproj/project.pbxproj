@@ -6,7 +6,32 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		87813C4E2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 87813C2B2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		87813C3B2CDC2C81001F2C01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CD47482CD2C0A60097B8E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87813C2A2CDC2C7F001F2C01;
+			remoteInfo = "Kardasti Radio App Watch Watch App";
+		};
+		87813C452CDC2C81001F2C01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CD47482CD2C0A60097B8E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87813C2A2CDC2C7F001F2C01;
+			remoteInfo = "Kardasti Radio App Watch Watch App";
+		};
+		87813C4C2CDC2C81001F2C01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CD47482CD2C0A60097B8E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87813C2A2CDC2C7F001F2C01;
+			remoteInfo = "Kardasti Radio App Watch Watch App";
+		};
 		87CD47612CD2C0A70097B8E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87CD47482CD2C0A60097B8E7 /* Project object */;
@@ -23,13 +48,45 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		87813C522CDC2C81001F2C01 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				87813C4E2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		87813C2B2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kardasti Radio App Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87813C3A2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti Radio App Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87813C442CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti Radio App Watch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CD47502CD2C0A60097B8E7 /* Kardasti Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kardasti Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CD47602CD2C0A70097B8E7 /* Kardasti RadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti RadioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CD476A2CD2C0A70097B8E7 /* Kardasti RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		87813C2C2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Kardasti Radio App Watch Watch App";
+			sourceTree = "<group>";
+		};
+		87813C3D2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Kardasti Radio App Watch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		87813C472CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Kardasti Radio App Watch Watch AppUITests";
+			sourceTree = "<group>";
+		};
 		87CD47522CD2C0A60097B8E7 /* Kardasti Radio */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Kardasti Radio";
@@ -48,6 +105,27 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		87813C282CDC2C7F001F2C01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87813C372CDC2C81001F2C01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87813C412CDC2C81001F2C01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CD474D2CD2C0A60097B8E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,6 +156,9 @@
 				87CD47522CD2C0A60097B8E7 /* Kardasti Radio */,
 				87CD47632CD2C0A70097B8E7 /* Kardasti RadioTests */,
 				87CD476D2CD2C0A70097B8E7 /* Kardasti RadioUITests */,
+				87813C2C2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */,
+				87813C3D2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */,
+				87813C472CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */,
 				87CD47512CD2C0A60097B8E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +169,9 @@
 				87CD47502CD2C0A60097B8E7 /* Kardasti Radio.app */,
 				87CD47602CD2C0A70097B8E7 /* Kardasti RadioTests.xctest */,
 				87CD476A2CD2C0A70097B8E7 /* Kardasti RadioUITests.xctest */,
+				87813C2B2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App.app */,
+				87813C3A2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests.xctest */,
+				87813C442CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +179,74 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		87813C2A2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87813C4F2CDC2C81001F2C01 /* Build configuration list for PBXNativeTarget "Kardasti Radio App Watch Watch App" */;
+			buildPhases = (
+				87813C272CDC2C7F001F2C01 /* Sources */,
+				87813C282CDC2C7F001F2C01 /* Frameworks */,
+				87813C292CDC2C7F001F2C01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				87813C2C2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */,
+			);
+			name = "Kardasti Radio App Watch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "Kardasti Radio App Watch Watch App";
+			productReference = 87813C2B2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87813C392CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87813C532CDC2C81001F2C01 /* Build configuration list for PBXNativeTarget "Kardasti Radio App Watch Watch AppTests" */;
+			buildPhases = (
+				87813C362CDC2C81001F2C01 /* Sources */,
+				87813C372CDC2C81001F2C01 /* Frameworks */,
+				87813C382CDC2C81001F2C01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87813C3C2CDC2C81001F2C01 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				87813C3D2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */,
+			);
+			name = "Kardasti Radio App Watch Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "Kardasti Radio App Watch Watch AppTests";
+			productReference = 87813C3A2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		87813C432CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87813C562CDC2C81001F2C01 /* Build configuration list for PBXNativeTarget "Kardasti Radio App Watch Watch AppUITests" */;
+			buildPhases = (
+				87813C402CDC2C81001F2C01 /* Sources */,
+				87813C412CDC2C81001F2C01 /* Frameworks */,
+				87813C422CDC2C81001F2C01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87813C462CDC2C81001F2C01 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				87813C472CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */,
+			);
+			name = "Kardasti Radio App Watch Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "Kardasti Radio App Watch Watch AppUITests";
+			productReference = 87813C442CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		87CD474F2CD2C0A60097B8E7 /* Kardasti Radio */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87CD47742CD2C0A70097B8E7 /* Build configuration list for PBXNativeTarget "Kardasti Radio" */;
@@ -102,10 +254,12 @@
 				87CD474C2CD2C0A60097B8E7 /* Sources */,
 				87CD474D2CD2C0A60097B8E7 /* Frameworks */,
 				87CD474E2CD2C0A60097B8E7 /* Resources */,
+				87813C522CDC2C81001F2C01 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				87813C4D2CDC2C81001F2C01 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				87CD47522CD2C0A60097B8E7 /* Kardasti Radio */,
@@ -173,6 +327,17 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					87813C2A2CDC2C7F001F2C01 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					87813C392CDC2C81001F2C01 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 87813C2A2CDC2C7F001F2C01;
+					};
+					87813C432CDC2C81001F2C01 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 87813C2A2CDC2C7F001F2C01;
+					};
 					87CD474F2CD2C0A60097B8E7 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -203,11 +368,35 @@
 				87CD474F2CD2C0A60097B8E7 /* Kardasti Radio */,
 				87CD475F2CD2C0A70097B8E7 /* Kardasti RadioTests */,
 				87CD47692CD2C0A70097B8E7 /* Kardasti RadioUITests */,
+				87813C2A2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */,
+				87813C392CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */,
+				87813C432CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		87813C292CDC2C7F001F2C01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87813C382CDC2C81001F2C01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87813C422CDC2C81001F2C01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CD474E2CD2C0A60097B8E7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +421,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		87813C272CDC2C7F001F2C01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87813C362CDC2C81001F2C01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87813C402CDC2C81001F2C01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CD474C2CD2C0A60097B8E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +466,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		87813C3C2CDC2C81001F2C01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87813C2A2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */;
+			targetProxy = 87813C3B2CDC2C81001F2C01 /* PBXContainerItemProxy */;
+		};
+		87813C462CDC2C81001F2C01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87813C2A2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */;
+			targetProxy = 87813C452CDC2C81001F2C01 /* PBXContainerItemProxy */;
+		};
+		87813C4D2CDC2C81001F2C01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87813C2A2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */;
+			targetProxy = 87813C4C2CDC2C81001F2C01 /* PBXContainerItemProxy */;
+		};
 		87CD47622CD2C0A70097B8E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 87CD474F2CD2C0A60097B8E7 /* Kardasti Radio */;
@@ -269,6 +494,150 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		87813C502CDC2C81001F2C01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Kardasti Radio App Watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kardasti Radio App Watch";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "Kardasti24.Kardasti-Radio";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-Radio.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.7;
+			};
+			name = Debug;
+		};
+		87813C512CDC2C81001F2C01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Kardasti Radio App Watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kardasti Radio App Watch";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "Kardasti24.Kardasti-Radio";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-Radio.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.7;
+			};
+			name = Release;
+		};
+		87813C542CDC2C81001F2C01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-watch.Kardasti-Radio-App-Watch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kardasti Radio App Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Kardasti Radio App Watch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Debug;
+		};
+		87813C552CDC2C81001F2C01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-watch.Kardasti-Radio-App-Watch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kardasti Radio App Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Kardasti Radio App Watch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Release;
+		};
+		87813C572CDC2C81001F2C01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-watch.Kardasti-Radio-App-Watch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Kardasti Radio App Watch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Debug;
+		};
+		87813C582CDC2C81001F2C01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-watch.Kardasti-Radio-App-Watch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Kardasti Radio App Watch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Release;
+		};
 		87CD47722CD2C0A70097B8E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -408,6 +777,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -442,6 +812,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,6 +898,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		87813C4F2CDC2C81001F2C01 /* Build configuration list for PBXNativeTarget "Kardasti Radio App Watch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87813C502CDC2C81001F2C01 /* Debug */,
+				87813C512CDC2C81001F2C01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87813C532CDC2C81001F2C01 /* Build configuration list for PBXNativeTarget "Kardasti Radio App Watch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87813C542CDC2C81001F2C01 /* Debug */,
+				87813C552CDC2C81001F2C01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87813C562CDC2C81001F2C01 /* Build configuration list for PBXNativeTarget "Kardasti Radio App Watch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87813C572CDC2C81001F2C01 /* Debug */,
+				87813C582CDC2C81001F2C01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		87CD474B2CD2C0A60097B8E7 /* Build configuration list for PBXProject "Kardasti Radio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
