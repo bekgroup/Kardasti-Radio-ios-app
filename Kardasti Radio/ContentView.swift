@@ -19,6 +19,9 @@ struct ContentView: View {
     @State private var isLoading = true
     @State private var hasAppeared = false
     
+    @StateObject private var sleepTimer = SleepTimerManager.shared
+    @State private var showingSleepTimerSheet = false
+    
     var body: some View {
         ZStack {
             (colorScheme == .dark ? Color.black : Color.white)
@@ -46,21 +49,46 @@ struct ContentView: View {
                 setupInitialState()
             }
         }
+        .sheet(isPresented: $showingSleepTimerSheet) {
+            SleepTimerSheet()
+        }
     }
     
     private var mainContent: some View {
         VStack(spacing: 20) {
-            RadioWaveAnimation(isPlaying: audioPlayer.isPlaying)
-                .frame(width: 200, height: 200)
+            ZStack {
+                if let artUrl = audioPlayer.nowPlayingManager.currentTrack?.nowPlaying.song.art,
+                   let url = URL(string: artUrl) {
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200, height: 200)
+                            .cornerRadius(10)
+                    } placeholder: {
+                        RadioWaveAnimation(isPlaying: audioPlayer.isPlaying)
+                            .frame(width: 200, height: 200)
+                    }
+                } else {
+                    RadioWaveAnimation(isPlaying: audioPlayer.isPlaying)
+                        .frame(width: 200, height: 200)
+                }
+            }
             
-            Text("Kardasti Radio")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
+            if let currentTrack = audioPlayer.nowPlayingManager.currentTrack {
+                Text(currentTrack.nowPlaying.song.title)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                
+                Text(currentTrack.nowPlaying.song.artist)
+                    .font(.title3)
+                    .foregroundColor(.secondary)
+            }
             
             playPauseButton
             volumeControls
-            shareButton
+            controlButtons
         }
         .padding()
     }
@@ -88,6 +116,27 @@ struct ContentView: View {
                 .foregroundColor(colorScheme == .dark ? .white : .blue)
         }
         .padding(.horizontal)
+    }
+    
+    private var controlButtons: some View {
+        HStack(spacing: 20) {
+            shareButton
+            
+            Button(action: { showingSleepTimerSheet = true }) {
+                VStack {
+                    Image(systemName: sleepTimer.isTimerActive ? "timer" : "timer.circle")
+                        .font(.system(size: 20))
+                    if sleepTimer.isTimerActive {
+                        Text(sleepTimer.formatRemainingTime())
+                            .font(.caption)
+                    }
+                }
+                .padding()
+                .foregroundColor(.white)
+                .background(colorScheme == .dark ? Color.gray : Color.blue)
+                .cornerRadius(10)
+            }
+        }
     }
     
     private var shareButton: some View {
