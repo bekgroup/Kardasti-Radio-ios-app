@@ -43,6 +43,10 @@ struct ContentView: View {
     
     @AppStorage("isDarkMode") private var isDarkMode = false
     
+    @State private var showShareSheet = false
+    @State private var isRotating = false
+    @State private var showPulse = false
+    
     private func handleScenePhaseChange(from oldPhase: ScenePhase, to newPhase: ScenePhase) {
         switch newPhase {
         case .active:
@@ -91,6 +95,25 @@ struct ContentView: View {
             } else {
                 mainContent
                     .transition(.opacity)
+                    .overlay(
+                        Button(action: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                isDarkMode.toggle()
+                            }
+                        }) {
+                            Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
+                                .font(.system(size: 22))
+                                .foregroundColor(isDarkMode ? .white : .black)
+                                .padding(12)
+                                .background(
+                                    Circle()
+                                        .fill(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.05))
+                                        .shadow(color: isDarkMode ? .clear : .black.opacity(0.1), radius: 5)
+                                )
+                        }
+                        .padding([.top, .trailing], 20)
+                        , alignment: .topTrailing
+                    )
             }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
@@ -111,6 +134,9 @@ struct ContentView: View {
         .sheet(isPresented: $showingSleepTimerSheet) {
             SleepTimerSheet()
         }
+        .sheet(isPresented: $showShareSheet) {
+            ShareSheet(items: ["Listen to Kardasti Radio!", "https://kardasti24.de"])
+        }
     }
     
     private var mainContent: some View {
@@ -120,14 +146,35 @@ struct ContentView: View {
                 .tracking(1.5)
                 .foregroundColor(isDarkMode ? .white : .black)
                 .padding(.top, 20)
+                .scaleEffect(isAnimating ? 1.1 : 1.0)
+                .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: isAnimating)
+                .onAppear { isAnimating = true }
             
             ZStack {
+                if audioPlayer.isPlaying {
+                    ForEach(0..<3) { index in
+                        Circle()
+                            .stroke(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.1), lineWidth: 1)
+                            .frame(width: 280 + CGFloat(index * 20), height: 280 + CGFloat(index * 20))
+                            .scaleEffect(showPulse ? 1.2 : 0.8)
+                            .opacity(showPulse ? 0 : 1)
+                            .animation(
+                                .easeInOut(duration: 1.5)
+                                .repeatForever(autoreverses: false)
+                                .delay(Double(index) * 0.3),
+                                value: showPulse
+                            )
+                    }
+                }
+                
                 Circle()
                     .stroke(
                         isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1),
                         lineWidth: 2
                     )
                     .frame(width: 280, height: 280)
+                    .rotationEffect(.degrees(isRotating && audioPlayer.isPlaying ? 360 : 0))
+                    .animation(.linear(duration: 20).repeatForever(autoreverses: false), value: isRotating)
                 
                 if let artUrl = audioPlayer.nowPlayingManager.currentTrack?.nowPlaying.song.art,
                    let url = URL(string: artUrl) {
@@ -138,6 +185,7 @@ struct ContentView: View {
                             .frame(width: 260, height: 260)
                             .clipShape(Circle())
                             .shadow(color: isDarkMode ? .blue.opacity(0.3) : .black.opacity(0.2), radius: 10)
+                            .rotationEffect(.degrees(isRotating && audioPlayer.isPlaying ? 360 : 0))
                     } placeholder: {
                         RadioWaveAnimation(isPlaying: audioPlayer.isPlaying)
                             .frame(width: 260, height: 260)
@@ -150,7 +198,12 @@ struct ContentView: View {
                 if audioPlayer.isPlaying {
                     LiveBadge()
                         .offset(y: -140)
+                        .transition(.scale.combined(with: .opacity))
                 }
+            }
+            .onAppear {
+                isRotating = true
+                showPulse = true
             }
             
             VStack(spacing: 8) {
@@ -174,49 +227,30 @@ struct ContentView: View {
             
             HStack(spacing: 40) {
                 Button(action: { showingSleepTimerSheet = true }) {
-                    ZStack {
-                        Circle()
-                            .fill(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.05))
-                            .frame(width: 60, height: 60)
-                        
-                        Image(systemName: "timer")
-                            .font(.system(size: 24))
-                            .foregroundColor(isDarkMode ? .white : .black)
-                    }
+                    ControlButton(
+                        icon: "timer",
+                        isDarkMode: isDarkMode,
+                        size: 60
+                    )
                 }
                 
                 Button(action: {
-                    withAnimation {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                         audioPlayer.isPlaying ? audioPlayer.pause() : audioPlayer.play()
                     }
                 }) {
-                    ZStack {
-                        Circle()
-                            .stroke(isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1), lineWidth: 4)
-                            .frame(width: 80, height: 80)
-                        
-                        Circle()
-                            .fill(audioPlayer.isPlaying ? Color.red : Color.green)
-                            .frame(width: 70, height: 70)
-                            .shadow(color: audioPlayer.isPlaying ? .red.opacity(0.3) : .green.opacity(0.3), radius: 10)
-                        
-                        Image(systemName: audioPlayer.isPlaying ? "pause.fill" : "play.fill")
-                            .font(.system(size: 35, weight: .bold))
-                            .foregroundColor(.white)
-                            .offset(x: audioPlayer.isPlaying ? 0 : 2)
-                    }
+                    PlayPauseButton(
+                        isPlaying: audioPlayer.isPlaying,
+                        isDarkMode: isDarkMode
+                    )
                 }
                 
-                Button(action: { isDarkMode.toggle() }) {
-                    ZStack {
-                        Circle()
-                            .fill(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.05))
-                            .frame(width: 60, height: 60)
-                        
-                        Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(isDarkMode ? .white : .black)
-                    }
+                Button(action: { showShareSheet = true }) {
+                    ControlButton(
+                        icon: "square.and.arrow.up",
+                        isDarkMode: isDarkMode,
+                        size: 60
+                    )
                 }
             }
             .padding(.top, 20)
@@ -333,6 +367,59 @@ struct PreloaderView: View {
             isAnimating = true
         }
     }
+}
+
+struct ControlButton: View {
+    let icon: String
+    let isDarkMode: Bool
+    let size: CGFloat
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.05))
+                .frame(width: size, height: size)
+            
+            Image(systemName: icon)
+                .font(.system(size: size * 0.4))
+                .foregroundColor(isDarkMode ? .white : .black)
+        }
+        .scaleEffect(1)
+        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: true)
+    }
+}
+
+struct PlayPauseButton: View {
+    let isPlaying: Bool
+    let isDarkMode: Bool
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1), lineWidth: 4)
+                .frame(width: 80, height: 80)
+            
+            Circle()
+                .fill(isPlaying ? Color.red : Color.green)
+                .frame(width: 70, height: 70)
+                .shadow(color: isPlaying ? .red.opacity(0.3) : .green.opacity(0.3), radius: 10)
+            
+            Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                .font(.system(size: 35, weight: .bold))
+                .foregroundColor(.white)
+                .offset(x: isPlaying ? 0 : 2)
+        }
+    }
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 #Preview {
