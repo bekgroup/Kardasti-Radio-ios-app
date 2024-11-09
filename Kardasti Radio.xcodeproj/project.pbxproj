@@ -46,6 +46,20 @@
 			remoteGlobalIDString = 87CD474F2CD2C0A60097B8E7;
 			remoteInfo = "Kardasti Radio";
 		};
+		87E23E672CE013C1006D993F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CD47482CD2C0A60097B8E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87E23E562CE013BF006D993F;
+			remoteInfo = "Kardasti Persian Radio";
+		};
+		87E23E712CE013C1006D993F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CD47482CD2C0A60097B8E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87E23E562CE013BF006D993F;
+			remoteInfo = "Kardasti Persian Radio";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +83,9 @@
 		87CD47502CD2C0A60097B8E7 /* Kardasti Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kardasti Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CD47602CD2C0A70097B8E7 /* Kardasti RadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti RadioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CD476A2CD2C0A70097B8E7 /* Kardasti RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87E23E572CE013BF006D993F /* Kardasti Persian Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kardasti Persian Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87E23E662CE013C1006D993F /* Kardasti Persian RadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti Persian RadioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87E23E702CE013C1006D993F /* Kardasti Persian RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kardasti Persian RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -100,6 +117,21 @@
 		87CD476D2CD2C0A70097B8E7 /* Kardasti RadioUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Kardasti RadioUITests";
+			sourceTree = "<group>";
+		};
+		87E23E582CE013BF006D993F /* Kardasti Persian Radio */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Kardasti Persian Radio";
+			sourceTree = "<group>";
+		};
+		87E23E692CE013C1006D993F /* Kardasti Persian RadioTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Kardasti Persian RadioTests";
+			sourceTree = "<group>";
+		};
+		87E23E732CE013C1006D993F /* Kardasti Persian RadioUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Kardasti Persian RadioUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -147,6 +179,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		87E23E542CE013BF006D993F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E632CE013C1006D993F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E6D2CE013C1006D993F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -159,6 +212,9 @@
 				87813C2C2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */,
 				87813C3D2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */,
 				87813C472CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */,
+				87E23E582CE013BF006D993F /* Kardasti Persian Radio */,
+				87E23E692CE013C1006D993F /* Kardasti Persian RadioTests */,
+				87E23E732CE013C1006D993F /* Kardasti Persian RadioUITests */,
 				87CD47512CD2C0A60097B8E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -172,6 +228,9 @@
 				87813C2B2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App.app */,
 				87813C3A2CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests.xctest */,
 				87813C442CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests.xctest */,
+				87E23E572CE013BF006D993F /* Kardasti Persian Radio.app */,
+				87E23E662CE013C1006D993F /* Kardasti Persian RadioTests.xctest */,
+				87E23E702CE013C1006D993F /* Kardasti Persian RadioUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,6 +376,74 @@
 			productReference = 87CD476A2CD2C0A70097B8E7 /* Kardasti RadioUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		87E23E562CE013BF006D993F /* Kardasti Persian Radio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87E23E782CE013C1006D993F /* Build configuration list for PBXNativeTarget "Kardasti Persian Radio" */;
+			buildPhases = (
+				87E23E532CE013BF006D993F /* Sources */,
+				87E23E542CE013BF006D993F /* Frameworks */,
+				87E23E552CE013BF006D993F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				87E23E582CE013BF006D993F /* Kardasti Persian Radio */,
+			);
+			name = "Kardasti Persian Radio";
+			packageProductDependencies = (
+			);
+			productName = "Kardasti Persian Radio";
+			productReference = 87E23E572CE013BF006D993F /* Kardasti Persian Radio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87E23E652CE013C1006D993F /* Kardasti Persian RadioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87E23E7B2CE013C1006D993F /* Build configuration list for PBXNativeTarget "Kardasti Persian RadioTests" */;
+			buildPhases = (
+				87E23E622CE013C1006D993F /* Sources */,
+				87E23E632CE013C1006D993F /* Frameworks */,
+				87E23E642CE013C1006D993F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87E23E682CE013C1006D993F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				87E23E692CE013C1006D993F /* Kardasti Persian RadioTests */,
+			);
+			name = "Kardasti Persian RadioTests";
+			packageProductDependencies = (
+			);
+			productName = "Kardasti Persian RadioTests";
+			productReference = 87E23E662CE013C1006D993F /* Kardasti Persian RadioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		87E23E6F2CE013C1006D993F /* Kardasti Persian RadioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87E23E7E2CE013C1006D993F /* Build configuration list for PBXNativeTarget "Kardasti Persian RadioUITests" */;
+			buildPhases = (
+				87E23E6C2CE013C1006D993F /* Sources */,
+				87E23E6D2CE013C1006D993F /* Frameworks */,
+				87E23E6E2CE013C1006D993F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87E23E722CE013C1006D993F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				87E23E732CE013C1006D993F /* Kardasti Persian RadioUITests */,
+			);
+			name = "Kardasti Persian RadioUITests";
+			packageProductDependencies = (
+			);
+			productName = "Kardasti Persian RadioUITests";
+			productReference = 87E23E702CE013C1006D993F /* Kardasti Persian RadioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -349,6 +476,17 @@
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = 87CD474F2CD2C0A60097B8E7;
 					};
+					87E23E562CE013BF006D993F = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					87E23E652CE013C1006D993F = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 87E23E562CE013BF006D993F;
+					};
+					87E23E6F2CE013C1006D993F = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 87E23E562CE013BF006D993F;
+					};
 				};
 			};
 			buildConfigurationList = 87CD474B2CD2C0A60097B8E7 /* Build configuration list for PBXProject "Kardasti Radio" */;
@@ -357,6 +495,8 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				fa,
 			);
 			mainGroup = 87CD47472CD2C0A60097B8E7;
 			minimizedProjectReferenceProxies = 1;
@@ -371,6 +511,9 @@
 				87813C2A2CDC2C7F001F2C01 /* Kardasti Radio App Watch Watch App */,
 				87813C392CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppTests */,
 				87813C432CDC2C81001F2C01 /* Kardasti Radio App Watch Watch AppUITests */,
+				87E23E562CE013BF006D993F /* Kardasti Persian Radio */,
+				87E23E652CE013C1006D993F /* Kardasti Persian RadioTests */,
+				87E23E6F2CE013C1006D993F /* Kardasti Persian RadioUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -412,6 +555,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		87CD47682CD2C0A70097B8E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E552CE013BF006D993F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E642CE013C1006D993F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E6E2CE013C1006D993F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -463,6 +627,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		87E23E532CE013BF006D993F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E622CE013C1006D993F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87E23E6C2CE013C1006D993F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -490,6 +675,16 @@
 			isa = PBXTargetDependency;
 			target = 87CD474F2CD2C0A60097B8E7 /* Kardasti Radio */;
 			targetProxy = 87CD476B2CD2C0A70097B8E7 /* PBXContainerItemProxy */;
+		};
+		87E23E682CE013C1006D993F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87E23E562CE013BF006D993F /* Kardasti Persian Radio */;
+			targetProxy = 87E23E672CE013C1006D993F /* PBXContainerItemProxy */;
+		};
+		87E23E722CE013C1006D993F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87E23E562CE013BF006D993F /* Kardasti Persian Radio */;
+			targetProxy = 87E23E712CE013C1006D993F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -764,7 +959,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Kardasti Radio/Preview Content\"";
 				DEVELOPMENT_TEAM = 6C4ECCJSS9;
 				ENABLE_PREVIEWS = YES;
@@ -799,7 +994,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Kardasti Radio/Preview Content\"";
 				DEVELOPMENT_TEAM = 6C4ECCJSS9;
 				ENABLE_PREVIEWS = YES;
@@ -895,6 +1090,148 @@
 			};
 			name = Release;
 		};
+		87E23E792CE013C1006D993F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"Kardasti Persian Radio/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kardasti Persian Radio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.Kardasti-Persian-Radio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.6;
+			};
+			name = Debug;
+		};
+		87E23E7A2CE013C1006D993F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"Kardasti Persian Radio/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kardasti Persian Radio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.Kardasti-Persian-Radio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.6;
+			};
+			name = Release;
+		};
+		87E23E7C2CE013C1006D993F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.Kardasti-Persian-RadioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kardasti Persian Radio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Kardasti Persian Radio";
+				TVOS_DEPLOYMENT_TARGET = 18.1;
+			};
+			name = Debug;
+		};
+		87E23E7D2CE013C1006D993F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.Kardasti-Persian-RadioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kardasti Persian Radio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Kardasti Persian Radio";
+				TVOS_DEPLOYMENT_TARGET = 18.1;
+			};
+			name = Release;
+		};
+		87E23E7F2CE013C1006D993F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.Kardasti-Persian-RadioUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "Kardasti Persian Radio";
+				TVOS_DEPLOYMENT_TARGET = 17.6;
+			};
+			name = Debug;
+		};
+		87E23E802CE013C1006D993F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C4ECCJSS9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.Kardasti-Persian-RadioUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "Kardasti Persian Radio";
+				TVOS_DEPLOYMENT_TARGET = 17.6;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -957,6 +1294,33 @@
 			buildConfigurations = (
 				87CD477B2CD2C0A70097B8E7 /* Debug */,
 				87CD477C2CD2C0A70097B8E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87E23E782CE013C1006D993F /* Build configuration list for PBXNativeTarget "Kardasti Persian Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87E23E792CE013C1006D993F /* Debug */,
+				87E23E7A2CE013C1006D993F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87E23E7B2CE013C1006D993F /* Build configuration list for PBXNativeTarget "Kardasti Persian RadioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87E23E7C2CE013C1006D993F /* Debug */,
+				87E23E7D2CE013C1006D993F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87E23E7E2CE013C1006D993F /* Build configuration list for PBXNativeTarget "Kardasti Persian RadioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87E23E7F2CE013C1006D993F /* Debug */,
+				87E23E802CE013C1006D993F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

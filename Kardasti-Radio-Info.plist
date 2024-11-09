@@ -14,5 +14,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+
+	<key>UIApplicationExitsOnSuspend</key>
+	<false/>
 </dict>
 </plist>
