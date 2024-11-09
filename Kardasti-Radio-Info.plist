@@ -6,5 +6,16 @@
 	<array>
 		<string>audio</string>
 	</array>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Diese App benötigt Zugriff auf das Mikrofon für die Audiowiedergabe.</string>
+
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+
+	<key>UIApplicationExitsOnSuspend</key>
+	<false/>
 </dict>
 </plist>
