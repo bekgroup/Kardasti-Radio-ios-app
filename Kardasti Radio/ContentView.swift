@@ -93,9 +93,15 @@ struct ContentView: View {
                 PreloaderView()
                     .transition(.opacity)
             } else {
-                mainContent
-                    .transition(.opacity)
-                    .overlay(
+                VStack(spacing: 30) {
+                    HStack {
+                        Text("KARDASTI RADIO")
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                            .tracking(1.5)
+                            .foregroundColor(isDarkMode ? .white : .black)
+                        
+                        Spacer()
+                        
                         Button(action: {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                 isDarkMode.toggle()
@@ -111,9 +117,13 @@ struct ContentView: View {
                                         .shadow(color: isDarkMode ? .clear : .black.opacity(0.1), radius: 5)
                                 )
                         }
-                        .padding([.top, .trailing], 20)
-                        , alignment: .topTrailing
-                    )
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 20)
+                    
+                    mainContent
+                        .transition(.opacity)
+                }
             }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
@@ -141,15 +151,6 @@ struct ContentView: View {
     
     private var mainContent: some View {
         VStack(spacing: 30) {
-            Text("KARDASTI RADIO")
-                .font(.system(size: 24, weight: .bold, design: .rounded))
-                .tracking(1.5)
-                .foregroundColor(isDarkMode ? .white : .black)
-                .padding(.top, 20)
-                .scaleEffect(isAnimating ? 1.1 : 1.0)
-                .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: isAnimating)
-                .onAppear { isAnimating = true }
-            
             ZStack {
                 if audioPlayer.isPlaying {
                     ForEach(0..<3) { index in
@@ -256,8 +257,73 @@ struct ContentView: View {
             .padding(.top, 20)
             
             Spacer()
+            
+            // Sleep Timer Countdown im Footer
+            if sleepTimer.isTimerActive {
+                VStack(spacing: 8) {
+                    Divider()
+                        .background(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.1))
+                    
+                    HStack(spacing: 15) {
+                        // Timer Icon mit Pulseffekt
+                        ZStack {
+                            Circle()
+                                .fill(isDarkMode ? Color.white.opacity(0.1) : Color.black.opacity(0.05))
+                                .frame(width: 36, height: 36)
+                            
+                            Image(systemName: "timer")
+                                .font(.system(size: 16))
+                                .foregroundColor(isDarkMode ? .white : .black)
+                                .opacity(0.8)
+                        }
+                        .overlay(
+                            Circle()
+                                .stroke(
+                                    isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1),
+                                    lineWidth: 2
+                                )
+                                .scaleEffect(isAnimating ? 1.2 : 1.0)
+                                .opacity(isAnimating ? 0 : 1)
+                                .animation(
+                                    .easeInOut(duration: 1.5)
+                                    .repeatForever(autoreverses: false),
+                                    value: isAnimating
+                                )
+                        )
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Sleep Timer")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(isDarkMode ? .white.opacity(0.8) : .black.opacity(0.8))
+                            
+                            Text(sleepTimer.formatRemainingTime())
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundColor(isDarkMode ? .white : .black)
+                        }
+                        
+                        Spacer()
+                        
+                        // Stop Button
+                        Button(action: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                sleepTimer.stopTimer()
+                            }
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 22))
+                                .foregroundColor(isDarkMode ? .white.opacity(0.8) : .black.opacity(0.6))
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
         .padding()
+        .onAppear {
+            isAnimating = true
+        }
     }
 }
 

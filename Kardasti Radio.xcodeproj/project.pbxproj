@@ -782,7 +782,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-Radio";
 				PRODUCT_NAME = "Kardasti Radio";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -817,7 +817,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "Kardasti24.Kardasti-Radio";
 				PRODUCT_NAME = "Kardasti Radio";
 				PROVISIONING_PROFILE_SPECIFIER = "";

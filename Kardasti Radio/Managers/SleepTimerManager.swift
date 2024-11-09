@@ -39,7 +39,7 @@ class SleepTimerManager: ObservableObject {
     
     private func handleTimerCompletion() {
         Task { @MainActor in
-            AudioPlayer.shared.pause()
+            KardastiAudioPlayer.shared.pause()
             stopTimer()
         }
     }
