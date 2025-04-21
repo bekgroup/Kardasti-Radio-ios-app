@@ -5,9 +5,14 @@ import MediaPlayer
 class AudioPlayer: ObservableObject {
     @MainActor static let shared = AudioPlayer()
     @Published var isPlaying = false
+    @Published var isBuffering = false
     @Published var nowPlayingManager = NowPlayingManager.shared
     private var player: AVPlayer?
+    private var playerItem: AVPlayerItem?
     private var timeObserver: Any?
+    private var itemStatusObserver: NSKeyValueObservation?
+    private var retryCount = 0
+    private let maxRetries = 3
     
     private init() {
         setupPlayer()
@@ -15,22 +20,90 @@ class AudioPlayer: ObservableObject {
     }
     
     private func setupPlayer() {
+        createPlayerItem()
+    }
+    
+    private func createPlayerItem() {
         guard let url = URL(string: "https://stream.server5.de/listen/farsi/kardasti-radio.mp3") else {
             print("Failed to create URL")
             return
         }
         
-        let playerItem = AVPlayerItem(url: url)
+        playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
         player?.volume = 1.0
         
         setupAudioSession()
         setupRemoteCommandCenter()
+        observePlayerItem()
         
         timeObserver = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { [weak self] _ in
             Task { @MainActor in
                 self?.updateNowPlaying()
             }
+        }
+    }
+    
+    private func observePlayerItem() {
+        itemStatusObserver?.invalidate()
+        
+        itemStatusObserver = playerItem?.observe(\.status, options: [.new]) { [weak self] item, _ in
+            Task { @MainActor in
+                self?.handlePlayerItemStatus(item.status)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handlePlaybackStalled),
+            name: NSNotification.Name.AVPlayerItemPlaybackStalled,
+            object: playerItem
+        )
+    }
+    
+    private func handlePlayerItemStatus(_ status: AVPlayerItem.Status) {
+        switch status {
+        case .readyToPlay:
+            isBuffering = false
+            if isPlaying {
+                player?.play()
+            }
+        case .failed:
+            handlePlaybackError()
+        case .unknown:
+            isBuffering = true
+        @unknown default:
+            break
+        }
+    }
+    
+    @objc private func handlePlaybackStalled() {
+        handlePlaybackError()
+    }
+    
+    private func handlePlaybackError() {
+        if retryCount < maxRetries {
+            retryCount += 1
+            print("Attempting to reconnect... (Attempt \(retryCount)/\(maxRetries))")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                self?.recreatePlayer()
+            }
+        } else {
+            print("Max retry attempts reached")
+            isPlaying = false
+            isBuffering = false
+            retryCount = 0
+        }
+    }
+    
+    private func recreatePlayer() {
+        player?.pause()
+        player = nil
+        playerItem = nil
+        createPlayerItem()
+        if isPlaying {
+            play()
         }
     }
     
@@ -49,6 +122,26 @@ class AudioPlayer: ObservableObject {
             selector: #selector(handleInterruption),
             name: AVAudioSession.interruptionNotification,
             object: nil)
+            
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(handleRouteChange),
+            name: AVAudioSession.routeChangeNotification,
+            object: nil)
+    }
+    
+    @objc private func handleRouteChange(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
+            return
+        }
+        
+        switch reason {
+        case .oldDeviceUnavailable:
+            pause()
+        default:
+            break
+        }
     }
     
     @objc private func handleInterruption(notification: Notification) {
@@ -77,6 +170,7 @@ class AudioPlayer: ObservableObject {
     func play() {
         do {
             try AVAudioSession.sharedInstance().setActive(true)
+            isBuffering = true
             player?.play()
             isPlaying = true
             updateNowPlaying()
@@ -88,6 +182,7 @@ class AudioPlayer: ObservableObject {
     func pause() {
         player?.pause()
         isPlaying = false
+        isBuffering = false
         updateNowPlaying()
     }
     
@@ -146,6 +241,7 @@ class AudioPlayer: ObservableObject {
         if let observer = timeObserver {
             player?.removeTimeObserver(observer)
         }
+        itemStatusObserver?.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
 } 

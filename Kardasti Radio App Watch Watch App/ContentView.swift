@@ -91,7 +91,7 @@ struct ContentView: View {
                 .buttonStyle(PlainButtonStyle())
                 
                 // Status Text
-                Text(audioPlayer.isPlaying ? "On Air" : "Tap to Play")
+                Text(audioPlayer.isBuffering ? "Buffering..." : (audioPlayer.isPlaying ? "On Air" : "Tap to Play"))
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.8))
                     .padding(.top, 8)
@@ -133,13 +133,17 @@ struct WaveBar: View {
 
 class AudioPlayer: NSObject, ObservableObject {
     private var player: AVPlayer?
+    private var playerItem: AVPlayerItem?
     @Published var isPlaying = false
+    @Published var isBuffering = false
     private var timeObserver: Any?
+    private var retryCount = 0
+    private let maxRetries = 3
     
     override init() {
         super.init()
         setupAudioSession()
-        setupPlayer()
+        createPlayerItem()
         setupNotifications()
     }
     
@@ -153,13 +157,13 @@ class AudioPlayer: NSObject, ObservableObject {
         }
     }
     
-    private func setupPlayer() {
+    private func createPlayerItem() {
         guard let url = URL(string: "https://stream.server5.de/listen/farsi/kardasti-radio.mp3") else {
             print("Failed to create URL")
             return
         }
         
-        let playerItem = AVPlayerItem(url: url)
+        playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
         player?.volume = 1.0
         
@@ -169,7 +173,18 @@ class AudioPlayer: NSObject, ObservableObject {
             self?.handlePlaybackStatus()
         }
         
-        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.old, .new], context: nil)
+        observePlayerItem()
+    }
+    
+    private func observePlayerItem() {
+        playerItem?.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.old, .new], context: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handlePlaybackStalled),
+            name: NSNotification.Name.AVPlayerItemPlaybackStalled,
+            object: playerItem
+        )
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -181,17 +196,72 @@ class AudioPlayer: NSObject, ObservableObject {
                 status = .unknown
             }
             
+            handlePlayerItemStatus(status)
+        }
+    }
+    
+    private func handlePlayerItemStatus(_ status: AVPlayerItem.Status) {
+        DispatchQueue.main.async {
             switch status {
             case .readyToPlay:
                 print("PlayerItem ist bereit zum Abspielen")
+                self.isBuffering = false
+                if self.isPlaying {
+                    self.player?.play()
+                }
             case .failed:
-                if let error = player?.currentItem?.error {
+                if let error = self.player?.currentItem?.error {
                     print("PlayerItem Fehler: \(error)")
                 }
+                self.handlePlaybackError()
             case .unknown:
                 print("PlayerItem Status unbekannt")
+                self.isBuffering = true
             @unknown default:
                 break
+            }
+        }
+    }
+    
+    @objc private func handlePlaybackStalled() {
+        handlePlaybackError()
+    }
+    
+    private func handlePlaybackError() {
+        DispatchQueue.main.async {
+            if self.retryCount < self.maxRetries {
+                self.retryCount += 1
+                print("Attempting to reconnect... (Attempt \(self.retryCount)/\(self.maxRetries))")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.recreatePlayer()
+                }
+            } else {
+                print("Max retry attempts reached")
+                self.isPlaying = false
+                self.isBuffering = false
+                self.retryCount = 0
+            }
+        }
+    }
+    
+    private func recreatePlayer() {
+        player?.pause()
+        player = nil
+        playerItem = nil
+        createPlayerItem()
+        if isPlaying {
+            play()
+        }
+    }
+    
+    private func handlePlaybackStatus() {
+        // Überprüfe den aktuellen Wiedergabestatus
+        if let currentItem = player?.currentItem {
+            if currentItem.isPlaybackBufferEmpty {
+                isBuffering = true
+            } else if currentItem.isPlaybackLikelyToKeepUp {
+                isBuffering = false
             }
         }
     }
@@ -201,13 +271,25 @@ class AudioPlayer: NSObject, ObservableObject {
             selector: #selector(handleInterruption),
             name: AVAudioSession.interruptionNotification,
             object: nil)
+            
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(handleRouteChange),
+            name: AVAudioSession.routeChangeNotification,
+            object: nil)
     }
     
-    private func handlePlaybackStatus() {
-        if let player = player {
-            DispatchQueue.main.async {
-                self.isPlaying = player.rate != 0
-            }
+    @objc private func handleRouteChange(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
+            return
+        }
+        
+        switch reason {
+        case .oldDeviceUnavailable:
+            pause()
+        default:
+            break
         }
     }
     
@@ -218,23 +300,26 @@ class AudioPlayer: NSObject, ObservableObject {
             return
         }
         
-        switch type {
-        case .began:
-            pause()
-        case .ended:
-            guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
-            let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
-            if options.contains(.shouldResume) {
-                play()
+        DispatchQueue.main.async {
+            switch type {
+            case .began:
+                self.pause()
+            case .ended:
+                guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
+                let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+                if options.contains(.shouldResume) {
+                    self.play()
+                }
+            @unknown default:
+                break
             }
-        @unknown default:
-            break
         }
     }
     
     func play() {
         do {
             try AVAudioSession.sharedInstance().setActive(true)
+            isBuffering = true
             player?.play()
             isPlaying = true
         } catch {
@@ -245,18 +330,28 @@ class AudioPlayer: NSObject, ObservableObject {
     func pause() {
         player?.pause()
         isPlaying = false
+        isBuffering = false
+    }
+    
+    func handleForegroundTransition() {
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+            if isPlaying {
+                player?.play()
+            }
+        } catch {
+            print("Failed to handle foreground transition: \(error)")
+        }
     }
     
     func handleBackgroundTransition() {
         if isPlaying {
-            play()
-        }
-    }
-    
-    func handleForegroundTransition() {
-        setupAudioSession()
-        if isPlaying {
-            play()
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                print("Failed to handle background transition: \(error)")
+            }
         }
     }
     
@@ -264,8 +359,8 @@ class AudioPlayer: NSObject, ObservableObject {
         if let observer = timeObserver {
             player?.removeTimeObserver(observer)
         }
+        playerItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
         NotificationCenter.default.removeObserver(self)
-        player?.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
     }
 }
 
